@@ -6,11 +6,13 @@
     <title>Repositório de Materiais - 7º Ano</title>
     <style>
         :root {
-            --primary: #2c3e50;    /* Azul Escuro Profissional */
-            --secondary: #27ae60;  /* Verde para Sucesso/Exercícios */
-            --accent: #3498db;     /* Azul Claro para Links */
+            --primary: #2c3e50;
+            --secondary: #27ae60;
+            --accent: #3498db;
             --bg: #f4f7f6;
             --text: #333;
+            --warning: #f1c40f; 
+            --elegiveis-color: #8e44ad; /* Roxo para Elegíveis */
         }
 
         body { 
@@ -35,18 +37,39 @@
             padding: 0 20px; 
         }
 
+        /* Bloco de Lembretes (Lição de Casa) */
+        .lembrete-box {
+            background: #fff9c4;
+            border-left: 10px solid var(--warning);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .lembrete-box h2 { margin-top: 0; color: #856404; font-size: 1.2rem; }
+        .lembrete-box p { margin: 5px 0; font-weight: bold; }
+
+        /* Seção para Alunos Elegíveis */
+        .elegiveis-section {
+            background: #f3e5f5;
+            border: 2px dashed var(--elegiveis-color);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+        }
+        .elegiveis-section h2 { color: var(--elegiveis-color); margin-top: 0; }
+
         /* Barra de Pesquisa */
         .search-box { 
             width: 100%; 
             padding: 15px; 
-            margin-bottom: 2rem; 
+            margin-bottom: 1.5rem; 
             border: 2px solid #ddd; 
             border-radius: 8px; 
             font-size: 16px;
-            outline: none;
-            transition: 0.3s;
+            box-sizing: border-box;
         }
-        .search-box:focus { border-color: var(--accent); }
 
         /* Estilo da Tabela */
         .table-container { 
@@ -54,70 +77,40 @@
             border-radius: 10px; 
             overflow: hidden; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            overflow-x: auto; /* Garante que funcione no celular */
+            overflow-x: auto;
         }
 
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            min-width: 600px;
-        }
-
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
         thead { background: var(--primary); color: white; }
-
-        th, td { 
-            padding: 15px; 
-            text-align: left; 
-            border-bottom: 1px solid #eee; 
-        }
-
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
         tr:hover { background: #f9f9f9; }
 
-        /* Tags Coloridas */
-        .tag { 
-            padding: 4px 10px; 
-            border-radius: 4px; 
-            font-size: 12px; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-        }
+        .tag { padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: bold; text-transform: uppercase; }
         .tag-texto { background: #e1f5fe; color: #0288d1; }
         .tag-exercicio { background: #e8f5e9; color: #2e7d32; }
-        .tag-aviso { background: #fff3e0; color: #ef6c00; }
+        .tag-especial { background: #f3e5f5; color: var(--elegiveis-color); }
 
-        .btn-download { 
-            text-decoration: none; 
-            color: var(--accent); 
-            font-weight: bold; 
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .btn-download:hover { color: var(--primary); }
-
-        footer { 
-            text-align: center; 
-            padding: 3rem; 
-            color: #7f8c8d; 
-            font-size: 0.9rem; 
-        }
-
-        /* Responsividade para celular */
-        @media (max-width: 600px) {
-            header h1 { font-size: 1.5rem; }
-            th, td { padding: 10px; font-size: 14px; }
-        }
+        .btn-download { text-decoration: none; color: var(--accent); font-weight: bold; }
+        
+        footer { text-align: center; padding: 3rem; color: #7f8c8d; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>📚 Sala de Aula Virtual - 7º Ano</h1>
-    <p>Professora Elaine | Repositório de Conteúdos</p>
+    <p>Professora [Seu Nome] | Repositório de Conteúdos</p>
 </header>
 
 <div class="container">
-    <input type="text" id="inputBusca" class="search-box" placeholder="🔍 Digite um tema (ex: frações, história, exercícios)..." onkeyup="filtrarTabela()">
+
+    <section class="lembrete-box">
+        <h2>📌 Lembretes e Lições de Casa</h2>
+        <p>🏠 Lição de hoje: [Escreva aqui a lição da página X]</p>
+        <p>📅 Próxima atividade: [Data da entrega]</p>
+    </section>
+
+    <input type="text" id="inputBusca" class="search-box" placeholder="🔍 Pesquisar aula ou atividade..." onkeyup="filtrarTabela()">
 
     <div class="table-container">
         <table>
@@ -130,68 +123,22 @@
                 </tr>
             </thead>
             <tbody id="corpoTabela">
-               
                 <tr>
-                    <td>10/03</td>
-                    <td><b>Retomando os estudos sobre verbos.</small></td>
+                    <td>02/05</td>
+                    <td><b>Verbos: Tempos e Modos</b><br><small>Material de apoio para o 1º Trimestre.</small></td>
                     <td><span class="tag tag-texto">Texto</span></td>
-                    <td><a href="1tri-0205-verbos.pdf" class="btn-download">📖 Abrir</a></td>
+                    <td><a href="1tri-0205-verbos.pdf" class="btn-download">📖 Abrir PDF</a></td>
                 </tr>
-                
-                <!--
-                <tr>
-                    <td>10/03</td>
-                    <td><b>Introdução aos Números Inteiros</b><br><small>Leitura obrigatória para a próxima aula.</small></td>
-                    <td><span class="tag tag-texto">Texto</span></td>
-                    <td><a href="texto-aula-1.pdf" class="btn-download">📖 Abrir</a></td>
-                </tr>
-
-                <tr>
-                    <td>12/03</td>
-                    <td><b>Lista de Exercícios: Soma e Subtração</b><br><small>Entregar via e-mail ou presencial.</small></td>
-                    <td><span class="tag tag-exercicio">Exercício</span></td>
-                    <td><a href="lista-1.pdf" class="btn-download">📥 Baixar</a></td>
-                </tr>
-
-                <tr>
-                    <td>15/03</td>
-                    <td><b>Aviso: Datas das Provas Bimestrais</b><br><small>Confira o calendário atualizado.</small></td>
-                    <td><span class="tag tag-aviso">Aviso</span></td>
-                    <td><a href="#" class="btn-download">🔗 Ver Link</a></td>
-                </tr>
--->              
-                </tbody>
+            </tbody>
         </table>
     </div>
-</div>
 
-<footer>
-    © 2026 - Criado para meus aluninhos do 7º Ano de 2026. <br>
-    Desenvolvido ❤️ pela Profª Elaine D'Adderio e hospedado no GitHub Pages.
-</footer>
-
-<script>
-    function filtrarTabela() {
-        var input, filtro, tabela, tr, td, i, txtValue;
-        input = document.getElementById("inputBusca");
-        filtro = input.value.toUpperCase();
-        tabela = document.getElementById("corpoTabela");
-        tr = tabela.getElementsByTagName("tr");
-
-        for (i = 0; i < tr.length; i++) {
-            // Verifica o conteúdo da segunda coluna (Tema)
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filtro) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-</script>
-
-</body>
-</html>
+    <section class="elegiveis-section">
+        <h2>🎨 Área exclusiva para elegíveis</h2>
+        <p>Materiais de apoio e atividades adaptadas para desenvolvimento individual.</p>
+        
+        <div class="table-container">
+            <table>
+                <tr style="background: #fff;">
+                    <td style="width: 20%;">02/05</td>
+                    <td><b>Atividade de Verbos (Adaptada)</b><br><small>
