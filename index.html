@@ -95,3 +95,90 @@
 
         .btn-download { text-decoration: none; color: var(--accent); font-weight: bold; }
         .btn-vip { color: var(--vip-gold); text-decoration: none; font-weight: bold; }
+        
+        footer { text-align: center; padding: 3rem; color: #7f8c8d; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>📚 Sala de Aula Virtual - 7º Ano</h1>
+    <p>Professora [Seu Nome] | Repositório de Conteúdos</p>
+</header>
+
+<div class="container">
+
+    <section class="lembrete-box">
+        <h2>📌 Lembretes e Lições de Casa</h2>
+        <p>🏠 Lição: [Escreva aqui a lição de casa]</p>
+        <p>📅 Data Importante: [Coloque um lembrete aqui]</p>
+    </section>
+
+    <input type="text" id="inputBusca" class="search-box" placeholder="🔍 O que você procura? (ex: verbos, tarefa...)" onkeyup="filtrarTabela()">
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Conteúdo / Tema</th>
+                    <th>Tipo</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody id="corpoTabela">
+                <tr>
+                    <td>02/05</td>
+                    <td><b>Verbos: Tempos e Modos</b><br><small>Material de apoio para o 1º Trimestre.</small></td>
+                    <td><span class="tag tag-texto">Texto</span></td>
+                    <td><a href="1tri-0205-verbos.pdf" class="btn-download">📖 Abrir PDF</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <section class="vip-section">
+        <h2>⭐ Área VIP</h2>
+        <p>Conteúdos exclusivos e materiais de apoio individualizados.</p>
+        
+        <div class="table-container">
+            <table>
+                <tr style="background: #fff;">
+                    <td style="width: 20%;">02/05</td>
+                    <td><b>Atividade de Verbos (VIP)</b><br><small>Material com suporte visual exclusivo.</small></td>
+                    <td><span class="tag tag-vip">VIP</span></td>
+                    <td><a href="#" class="btn-vip">📥 Acessar Material</a></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    © 2026 - Organizado para as turmas de 7º Ano.
+</footer>
+
+<script>
+    function filtrarTabela() {
+        var input, filtro, tabela, tr, td, i, txtValue;
+        input = document.getElementById("inputBusca");
+        filtro = input.value.toUpperCase();
+        tabela = document.getElementById("corpoTabela");
+        tr = tabela.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filtro) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
